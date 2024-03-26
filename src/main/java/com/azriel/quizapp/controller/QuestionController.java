@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.azriel.quizapp.Question;
+import com.azriel.quizapp.entity.Question;
 import com.azriel.quizapp.service.QuestionService;
 
 @RestController
@@ -60,15 +60,21 @@ public class QuestionController {
 	@DeleteMapping("/{id}")
 	public ResponseEntity<String> deleteQuestion(@PathVariable("id")Integer id) {
 		try {
-			return new ResponseEntity(questionService.deleteQuestion(id);, HttpStatus.OK);
+			return new ResponseEntity(questionService.deleteQuestion(id), HttpStatus.OK);
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
 		return new ResponseEntity(new ArrayList<>(), HttpStatus.BAD_REQUEST);
 	}
 	
-	@PutMapping("/update/{id}")
-	public String updateQuestion(@PathVariable Integer id, @RequestBody Question question) {
-		return questionService.updateQuestion(id, question);
+	@PutMapping("/update")
+	public ResponseEntity<String> updateQuestion(@RequestBody Question question) {
+		try {
+			return new ResponseEntity(questionService.updateQuestion(question), HttpStatus.OK);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return new ResponseEntity(new ArrayList<>(), HttpStatus.BAD_REQUEST);
+		
 	}
 }

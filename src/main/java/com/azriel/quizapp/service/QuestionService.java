@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import com.azriel.quizapp.Question;
+import com.azriel.quizapp.entity.Question;
 import com.azriel.quizapp.dao.QuestionDao;
 
 @Service
@@ -35,15 +35,9 @@ public class QuestionService {
 		return "The adding was succesful!";
 	}
 
-	public String updateQuestion(Integer id, Question question) {
-		Question result = questionDao.findById(id).orElse(null);
-		if(result != null) {
-			question.setId(result.getId());
-			questionDao.save(result);
-		}else {
-			return "the id doesnt exist!";
-		}
-		return "the update was succesful";
+	public String updateQuestion(Question question) {
+		questionDao.save(question);
+		return "Update success!";
 	}
 	
 	

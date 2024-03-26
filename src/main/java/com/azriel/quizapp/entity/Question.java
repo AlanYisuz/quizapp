@@ -1,4 +1,4 @@
-package com.azriel.quizapp;
+package com.azriel.quizapp.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
